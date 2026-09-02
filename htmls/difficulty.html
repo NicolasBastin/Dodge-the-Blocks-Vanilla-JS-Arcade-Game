@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sélection de la difficulté</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../javascripts/choice.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <audio id="background-music" loop>
+            <source src="../medias/sounds/Lupus Nocte - Titan (Royalty Free Music).mp3" type="audio/mpeg">
+            Ton navigateur ne supporte pas l'élément audio.
+            </audio>
+            <h1 class="title">Choisissez la difficulté</h1>
+            <p class="subtitle">Sélectionnez le niveau de difficulté pour votre aventure</p>
+            
+            <div class="modes">
+                <button class="mode-btn" aria-pressed="true">Facile</button>
+                <button class="mode-btn" aria-pressed="false">Normal</button>
+                <button class="mode-btn" aria-pressed="false">Difficile</button>
+            </div>
+
+            <div class="actions">
+                <button class="play" onclick="onClickWithChoice((textContent) => { 
+                    localStorage.setItem('gameDifficulty', textContent); 
+                    window.location.href = 'histoire.html'; 
+                    })">Commencer</button>
+                <button class="secondary" onclick="window.location.href='../index.html'">Retour</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

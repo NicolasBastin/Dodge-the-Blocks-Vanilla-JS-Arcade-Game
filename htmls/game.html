@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodge the Blocks - Mode Survie</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        #gameCanvas {
+            display: block;
+            margin: 6px auto;
+            border: 2px solid #3ee1a8;
+            border-radius: 4px;
+            background: rgba(0,0,0,0.3);
+            box-sizing: border-box; /* ensure border is counted inside sizing */
+            max-width: calc(100% - 32px); /* slightly less side padding than before */
+            width: 100%;
+            height: auto;
+        }
+        .game-container {
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column; /* stack canvas then controls */
+            align-items: center;
+            justify-content: flex-start;
+            padding: 8px 24px; /* slightly less top/bottom limit, a bit more left/right space */
+        }
+        .score {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #3ee1a8;
+        }
+        .controls {
+            margin-top: 20px;
+            font-size: 14px;
+            color: rgba(231,240,255,0.8);
+        }
+            .mobile-controls {
+                position: static; /* place below the canvas */
+                display: none;
+                margin-top: 12px;
+            }
+            .control-row {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin: 5px 0;
+            }
+            .control-btn {
+                width: 50px;
+                height: 50px;
+                background: rgba(62, 225, 168, 0.2);
+                border: 2px solid #3ee1a8;
+                border-radius: 8px;
+                color: #3ee1a8;
+                font-size: 24px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .control-btn:active {
+                background: rgba(62, 225, 168, 0.4);
+            }
+            @media (max-width: 768px) {
+                .mobile-controls {
+                    display: block;
+                }
+                /* make the green frame touch more of the sides on mobile */
+                #gameCanvas {
+                    max-width: calc(100% - 12px);
+                }
+                .game-container {
+                    padding: 8px 8px; /* reduce left/right padding on mobile */
+                }
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1 class="title">Mode Survie</h1>
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="game-container">
+                <canvas id="gameCanvas" width="600" height="400"></canvas>
+                    <div class="mobile-controls">
+                        <div class="control-row">
+                            <button class="control-btn" id="upBtn">⬆</button>
+                        </div>
+                        <div class="control-row">
+                            <button class="control-btn" id="leftBtn">⬅</button>
+                            <button class="control-btn" id="downBtn">⬇</button>
+                            <button class="control-btn" id="rightBtn">➡</button>
+                        </div>
+                    </div>
+            </div>
+            <div class="controls">
+                Utilisez les flèches ↑ ← ↓ → ou Z Q S D pour déplacer le vaisseau<br>
+                Évitez les astéroïdes !
+            </div>
+            <div class="actions">
+                <button class="play" onclick="restartGame()">Rejouer</button>
+                <button class="secondary" onclick="window.location.href='../index.html'">Menu Principal</button>
+            </div>
+        </div>
+    </div>
+    <script src="../javascripts/objects/entity.js"></script>
+    <script src="../javascripts/objects/block.js"></script>
+    <script src="../javascripts/objects/particle.js"></script>
+    <script src="../javascripts/objects/player.js"></script>
+    <script src="../javascripts/script_game.js"></script>
+    <audio id="background-music" loop>
+        <source src="../medias/sounds/Lupus Nocte - MX 7000 (Royalty Free Music).mp3" type="audio/mpeg">
+        Ton navigateur ne supporte pas l'élément audio.
+    </audio>
+</body>
+</html>

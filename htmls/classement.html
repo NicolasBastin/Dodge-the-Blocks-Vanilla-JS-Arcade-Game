@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Dodge the Blocks — Classement</title>
+    <link rel="stylesheet" href="../css/style.css">
+	<style>
+        #leaderboard,
+        #leaderboard p,
+        #leaderboard th,
+        #leaderboard td {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+  	<div class="container">
+		<div class="card" role="main" aria-labelledby="game-title">
+			<div class="title" id="game-title">Classement</div>
+			<div class="subtitle">Top scores — Mode Survie</div>
+
+			<div id="leaderboard" style="margin-top:18px; text-align:left;">
+				<!-- Filled by JS -->
+			</div>
+
+			<div class="footer-note" style="margin-top:18px;">
+				Les scores sont stockés localement dans ton navigateur.
+			</div>
+		</div>
+  	</div>
+</body>
+	<script>
+	// Render survival leaderboard from localStorage
+	(function renderLeaderboard(){
+		const key = 'survivalHighScores';
+		const container = document.getElementById('leaderboard');
+		if (!container) return;
+		const raw = localStorage.getItem(key) || '[]';
+		let list;
+		try { list = JSON.parse(raw); } catch(e) { list = []; }
+
+		if (!Array.isArray(list) || list.length === 0) {
+			container.innerHTML = '<p>Aucun score enregistré pour le moment. Joue pour être le premier !</p>\n' +
+				'<div style="margin-top:12px"><button class="secondary" onclick="window.location.href=\'/\'">Retour</button></div>';
+
+		} else {
+			// build table
+			const table = document.createElement('table');
+			table.style.width = '100%';
+			table.style.borderCollapse = 'collapse';
+			table.innerHTML = '<thead><tr><th style="text-align:left; padding:8px">#</th><th style="text-align:left; padding:8px">Pseudo</th><th style="text-align:right; padding:8px">Score</th></tr></thead>';
+			const tbody = document.createElement('tbody');
+
+			list.slice(0, 15).forEach((item, idx) => {
+				const tr = document.createElement('tr');
+				tr.style.borderTop = '1px solid rgba(255,255,255,0.04)';
+				tr.innerHTML = '<td style="padding:8px; width:40px">' + (idx+1) + '</td>' +
+							'<td style="padding:8px">' + (item.pseudo || 'Anonyme') + '</td>' +
+							'<td style="padding:8px; text-align:right">' + (item.score || 0) + '</td>';
+				tbody.appendChild(tr);
+			});
+
+			table.appendChild(tbody);
+			container.innerHTML = '';
+			container.appendChild(table);
+			const controls = document.createElement('div');
+			controls.style.marginTop = '12px';
+			controls.innerHTML = '<button class="secondary" onclick="window.location.href=\'/\'">Retour</button>';
+			container.appendChild(controls);
+		}
+	})();
+	</script>
+</html>

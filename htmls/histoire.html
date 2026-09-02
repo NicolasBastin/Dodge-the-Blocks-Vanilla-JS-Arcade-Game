@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodge the Blocks - Intro</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style_histoire.css">
+</head>
+<body>
+    <div id="game-container">
+        <video id="background-video" autoplay muted loop playsinline>
+            <source src="../medias/videos/depart_vf.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas les vidéos.
+        </video>
+        <div id="fade-overlay"></div>
+        <img id="spaceship" src="../medias/img/vaisseau_j_arriere.png" alt="Vaisseau spatial">
+
+        <canvas id="gameCanvas" class="hidden"></canvas>
+
+        <div id="game-ui" class="hidden">
+            <div id="game-timer">TEMPS: 00:00</div>
+            <button id="pause-btn">||</button>
+        </div>
+
+        <div id="pause-menu" class="hidden">
+            <div class="pause-title">PAUSE</div>
+            
+            <button id="resume-btn" class="play">Reprendre</button>
+            
+            <button id="restart-chapter-btn" class="secondary">Rejouer le chapitre</button>
+            <button id="main-menu-btn" class="secondary">Menu Principal</button>
+        </div>
+        <div id="victory-menu">
+            <img src="../medias/img/vaisseau_joueur.png" class="victory-ship" alt="Vaisseau">
+            
+            <div class="victory-title">MISSION RÉUSSIE !</div>
+            <div class="victory-stats">L'espace est à nouveau sûr...</div>
+            
+            <div class="victory-actions">
+                <button id="next-level-btn" class="play">Niveau Suivant</button>
+                <button class="secondary" onclick="window.location.href='niveaux.html'">Carte des Niveaux</button>
+                <button class="secondary" onclick="window.location.href='../index.html'">Menu Principal</button>
+            </div>
+        </div>
+        <div id="mobile-controls" class="mobile-controls hidden">
+            <div class="control-row">
+                <button class="control-btn" id="upBtn">⬆</button>
+            </div>
+            <div class="control-row">
+                <button class="control-btn" id="leftBtn">⬅</button>
+                <button class="control-btn" id="downBtn">⬇</button>
+                <button class="control-btn" id="rightBtn">➡</button>
+            </div>
+        </div>
+
+        <div id="dialogue-box" class="hidden">
+            <div class="speaker-info">
+                <img id="speaker-portrait" src="../medias/img/astro.png" alt="Portrait">
+                <p id="speaker-name"></p>
+            </div>
+            <div class="text-content">
+                <p id="dialogue-text"></p>
+                <span id="next-indicator" class="hidden">▼</span>
+            </div>
+        </div>
+
+        <audio id="intro-sound" preload="auto">
+            <source src="../medias/sounds/demarrage_hyper_espace.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="background-music" preload="auto" loop>
+            <source src="../medias/sounds/son_propul.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="astro-blip" preload="auto">
+            <source src="../medias/sounds/astroBlip.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="commandant-blip" preload="auto">
+            <source src="../medias/sounds/commandantBlip.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="text-typing" preload="auto" loop>
+            <source src="../medias/sounds/digital_text_sequence_mission_01.mp3" type="audio/mpeg">
+        </audio>
+
+    </div>
+    <script src="../javascripts/objects/entity.js"></script>
+    <script src="../javascripts/objects/block.js"></script>
+    <script src="../javascripts/objects/particle.js"></script>
+    <script src="../javascripts/objects/player.js"></script>
+    <script src="../javascripts/script_histoire.js" defer></script>
+</body>
+</html>
