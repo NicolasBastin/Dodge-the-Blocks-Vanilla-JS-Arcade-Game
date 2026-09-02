@@ -1,0 +1,60 @@
+{
+  "missionBriefingHyperspace": [
+    {
+      "name": "Commandant",
+      "portrait": "../medias/img/homme_affaire.png",
+      "text": "Pilote, ici le Commandant. J'profite de la stabilité du tunnel hyper-espace. Vous me recevez ?",
+      "voiceBlip": "commandant"
+    },
+    {
+      "name": "Astro",
+      "portrait": "../medias/img/astro.png",
+      "text": "5 sur 5, Commandant. C'est... étrangement calme. Ça fait du bien avant la tempête, j'imagine.",
+      "voiceBlip": "astro"
+    },
+    {
+      "name": "Commandant",
+      "portrait": "../medias/img/homme_affaire.png",
+      "text": "Profites-en. C'est le seul moment tranquille qu'on aura. Je te briefe maintenant car c'est notre seule fenêtre.",
+      "voiceBlip": "commandant"
+    },
+    {
+      "name": "Astro",
+      "portrait": "../medias/img/astro.png",
+      "text": "Je suis prêt. Quelle est la cible ?",
+      "voiceBlip": "astro"
+    },
+    {
+      "name": "Commandant",
+      "portrait": "../medias/img/homme_affaire.png",
+      "text": "Ta sortie d'hyper-espace est prévue dans le secteur K-34. Un champ d'astéroïdes dense. Nos 'long-range' y ont détecté une nouvelle colonie.",
+      "voiceBlip": "commandant"
+    },
+    {
+      "name": "Commandant",
+      "portrait": "../medias/img/homme_affaire.png",
+      "text": "Une espèce invasive. Leurs signatures biologiques montrent qu'ils prospèrent trop vite. Si on attend, ils seront ingérables d'ici un cycle.",
+      "voiceBlip": "commandant"
+    },
+    {
+      "name": "Astro",
+      "portrait": "../medias/img/astro.png",
+      "text": "Objectif : éradication avant qu'ils ne deviennent un problème galactique. Compris.",
+      "voiceBlip": "astro"
+    },
+    {
+      "name": "Commandant",
+      "portrait": "../medias/img/homme_affaire.png",
+      "text": "Exactement. Détruisez la colonie. Sortie du tunnel dans 3... 2... 1... Bonne chance, Pilote.",
+      "voiceBlip": "commandant"
+    }
+  ],
+  "autreMission": [
+    {
+      "name": "Astro",
+      "portrait": "../medias/img/astro.png",
+      "text": "Cette auberge a l'air sympa pour se reposer.",
+      "voiceBlip": "astro"
+    }
+  ]
+}

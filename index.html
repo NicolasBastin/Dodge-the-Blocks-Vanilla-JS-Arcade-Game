@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dodge the Blocks — Accueil</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="javascripts/choice.js" defer></script>
+    <script src="javascripts/settings.js" defer></script>
+  </head>
+  <body>
+    
+    <div class="container"> 
+      <div class="card" role="main" aria-labelledby="game-title">
+        <div class="title" id="game-title">Earth Attack</div>
+        <div class="subtitle">
+          Choisis un mode et prépare-toi à sauver la galaxie !
+        </div>
+
+        <video class="preview" autoplay muted loop playsinline>
+          <source src="medias/videos/pres_jeu.mp4" type="video/mp4" />
+          Ton navigateur ne supporte pas la vidéo.
+        </video>
+        <form action="#" onsubmit="return false;">
+          <div class="full-row">
+            <label for="pseudo">Pseudo (pour le classement):</label>
+            <input
+              id="pseudo"
+              type="text"
+              placeholder="Ton pseudo..."
+              maxlength="20"
+            />
+          </div>
+
+          <div class="full-row">
+            <label>Mode de jeu</label>
+            <div class="modes" role="tablist" aria-label="Choix du mode">
+              <button type="button" class="mode-btn" aria-pressed="true">
+                Survie
+              </button>
+              <button type="button" class="mode-btn" aria-pressed="false">
+                Histoire
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="actions">
+          <button
+            class="play"
+            title="Jouer"
+            onclick="onClickWithChoice((textContent) => {
+					const pseudoInput = document.getElementById('pseudo');
+					const inputValue = pseudoInput ? pseudoInput.value.trim() : '';
+					const storedPseudo = localStorage.getItem('playerPseudo');
+					const finalPseudo = inputValue || storedPseudo || 'Anonyme';
+					localStorage.setItem('playerPseudo', finalPseudo);
+
+					if(textContent === 'Survie') 
+						window.location.href = 'htmls/game.html'; 
+					else 
+						window.location.href = 'htmls/difficulty.html';
+					})"
+          >
+            ▶ Jouer
+          </button>
+          <button
+            class="secondary"
+            title="Classement"
+            onclick="window.location.href='htmls/classement.html'"
+          >
+            Classement
+          </button>
+          <button class="secondary" title="Paramètres" onclick="OpenSettings()">Paramètres</button>
+        </div>
+        <div id="overlay">
+          <div id="settings">
+            <h2>Paramètres</h2>
+            <p>Volume :<input type="range" id="volume-slider"></p><br><br>
+            <p>Skins :<div class="skin-options">
+              <script>
+              function rescaleSkins() {
+                const skins = document.querySelectorAll(".skin-options img");
+                const baseScreenWidth = 1920; 
+                const baseSkinSize = 120;  
+                const scale = window.innerWidth / baseScreenWidth;
+                const newSize = Math.max(60, baseSkinSize * scale);
+                skins.forEach(skin => {
+                  skin.style.width = newSize + "px";
+                  skin.style.height = "auto"; 
+                  skin.style.cursor = "pointer";
+                });
+              }
+              window.addEventListener("load", rescaleSkins);
+              window.addEventListener("resize", rescaleSkins);
+
+              let selectedSkin = null;
+
+              function selectSkin(src) {
+                const skins = document.querySelectorAll(".skin-options img");
+
+                skins.forEach(skin => {
+                  skin.style.border = "3px solid transparent";
+                  skin.style.transform = "scale(1)";
+                });
+
+                const selected = Array.from(skins).find(skin => skin.getAttribute("onclick").includes(src));
+                if (selected) {
+                  selected.style.border = "3px solid #00ffff";
+                  selected.style.transform = "scale(1.1)";
+                  localStorage.setItem("skin",src)
+                }
+              }
+        
+              </script>
+              <img src="medias/img/vaisseau0.png" alt="Skin 0" onclick="selectSkin('vaisseau0')">
+              <img src="medias/img/vaisseau1.png" alt="Skin 1" onclick="selectSkin('vaisseau1')">
+              <img src="medias/img/vaisseau2.png" alt="Skin 2" onclick="selectSkin('vaisseau2')">
+              <img src="medias/img/vaisseau3.png" alt="Skin 3" onclick="selectSkin('vaisseau3')">
+              <img src="medias/img/vaisseau4.png" alt="Skin 4" onclick="selectSkin('vaisseau4')">
+            </div></p>
+            <button onclick="CloseSettings()">Fermer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <audio id="background-music" loop>
+        <source src="medias/sounds/Lupus Nocte - Titan (Royalty Free Music).mp3" type="audio/mpeg">
+        Ton navigateur ne supporte pas l'élément audio.
+    </audio>
+  </body>
+</html>
