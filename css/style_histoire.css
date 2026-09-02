@@ -1,0 +1,433 @@
+/* --- Configuration Globale --- */
+html {
+    height: 100%;
+    background-image: url('../medias/img/background.png');
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: auto;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+html, body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Silkscreen', cursive; 
+}
+
+button, input, label, p, div {
+    font-family: 'Silkscreen', cursive;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Press Start 2P', cursive;
+    
+    background-color: transparent; 
+    
+    image-rendering: pixelated;
+}
+
+#game-container {
+    width: 70vw;
+    height: 70vh;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #555; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    object-fit: cover;
+    z-index: 1;
+    image-rendering: pixelated;
+}
+
+#fade-overlay.fade-out {
+    animation: fadeOutAnimation 2.5s ease-out forwards;
+}
+
+@keyframes fadeOutAnimation {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+#fade-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 100;
+}
+
+
+#spaceship {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 50;
+    width: 20%;
+    height: auto;
+    opacity: 0;
+    transform: translate(-100vw, -100vh) scale(0.1); 
+}
+
+@keyframes fadeOutAnimation {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+#spaceship.arrive {
+    animation: arriveAnimation 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes arriveAnimation {
+    from {
+        opacity: 0;
+        transform: translate(0vw, 100vh) scale(0.1);
+    }
+    to {
+        opacity: 1;
+        /* Position finale : centré parfaitement */
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+
+
+#dialogue-box {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1000px;
+    z-index: 200; 
+
+
+    min-height: 150px;
+    background-color: #1a1a2e; 
+    border: 4px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    
+    display: none;
+    padding: 15px;
+    box-sizing: border-box;
+    
+}
+
+
+#speaker-info { flex-basis: 120px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; }
+#speaker-portrait { width: 80px; height: 80px; border: 3px solid #e0e0e0; background-color: #555; image-rendering: pixelated; }
+#speaker-name { color: #f7a072; font-size: 14px; margin-top: 10px; text-align: center; }
+.text-content { flex-grow: 1; padding-left: 20px; color: #ffffff; font-size: 16px; line-height: 1.5; position: relative; }
+#dialogue-text { margin: 0; }
+#next-indicator { position: absolute; bottom: 5px; right: 10px; font-size: 20px; animation: blink 1s infinite; }
+.hidden { display: none; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+
+
+#gameCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 60;
+    display: none;
+    background: transparent; 
+    image-rendering: pixelated;
+}
+
+#game-ui {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    z-index: 300; /* Au-dessus de tout */
+    display: none; /* Caché par défaut */
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-size: 16px;
+}
+
+#game-timer {
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #555;
+    text-shadow: 1px 1px #000;
+}
+
+#pause-btn {
+    width: 40px;
+    height: 40px;
+    font-family: Arial, sans-serif; 
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #555;
+    cursor: pointer;
+}
+#pause-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#pause-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+
+    width: 90%;
+    max-width: 500px;
+    background: rgba(30, 25, 45, 0.95); 
+    border-top: 4px solid #7a73a3;
+    border-left: 4px solid #7a73a3;
+    border-bottom: 4px solid #1a152a;
+    border-right: 4px solid #1a152a;
+    
+    padding: 30px;
+    z-index: 299;
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.pause-title {
+    font-size: 32px;
+    color: rgba(231,240,255,0.8); /* Même couleur que tes titres de menus */
+    font-family: 'Silkscreen', cursive;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px #000;
+}
+
+.pause-btn {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+    color: #fff;
+    background: #333;
+    border: 2px solid #888;
+    padding: 15px 30px;
+    cursor: pointer;
+    min-width: 300px;
+    text-align: center;
+}
+.pause-btn:hover {
+    background: #555;
+    color: #ffff00;
+}
+
+
+.mobile-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 300;
+    width: 100%;
+    max-width: 200px;
+    display: none;
+}
+
+.control-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    /* Style pixel-art */
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid #555;
+    color: #fff;
+    
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent; /* Empêche le flash bleu sur mobile */
+    border-radius: 0 !important; 
+}
+
+.control-btn:active {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #888;
+}
+
+#victory-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+    background: rgba(30, 25, 45, 0.95);
+    
+    border-top: 4px solid #7a73a3;
+    border-left: 4px solid #7a73a3;
+    border-bottom: 4px solid #1a152a;
+    border-right: 4px solid #1a152a;
+    
+    padding: 30px;
+    z-index: 400;
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.victory-title {
+    font-size: 32px;
+    color: #3ee1a8;
+    text-shadow: 3px 3px #000;
+    margin-bottom: 10px;
+}
+
+.victory-stats {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.victory-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+@keyframes scrollBackground {
+    from { background-position: 0 0; }
+    to { background-position: 0 1000px; }
+}
+
+.victory-ship {
+    width: 80px;
+    image-rendering: pixelated;
+    margin-bottom: 20px;
+    animation: floatingShip 3s ease-in-out infinite;
+}
+
+@keyframes floatingShip {
+    0%, 100% { transform: translateY(0) rotate(5deg); }
+    50% { transform: translateY(-20px) rotate(-5deg); }
+}
+
+#next-level-btn {
+    border-color: #3ee1a8;
+    color: #3ee1a8;
+    animation: pulseButton 2s infinite;
+}
+
+@keyframes pulseButton {
+    0% { box-shadow: 0 0 0px rgba(62, 225, 168, 0.4); }
+    50% { box-shadow: 0 0 20px rgba(62, 225, 168, 0.8); }
+    100% { box-shadow: 0 0 0px rgba(62, 225, 168, 0.4); }
+}
+
+#game-ui {
+    padding: 10px 20px;
+    background: linear-gradient(180deg, rgba(62, 225, 168, 0.2) 0%, transparent 100%);
+    border-bottom: 2px solid rgba(62, 225, 168, 0.5);
+}
+
+#game-timer {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: #3ee1a8;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #3ee1a8;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(62, 225, 168, 0.5);
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+}
+
+#pause-btn {
+    border-radius: 50%;
+    border: 2px solid #ff6b6b;
+    color: #ff6b6b;
+    background: rgba(0, 0, 0, 0.6);
+    transition: all 0.3s;
+}
+
+#pause-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ff6b6b;
+}
+
+@keyframes warningGlow {
+    0% { box-shadow: inset 0 0 0px red; }
+    50% { box-shadow: inset 0 0 50px rgba(255, 0, 0, 0.5); }
+    100% { box-shadow: inset 0 0 0px red; }
+}
+
+.near-collision {
+    animation: warningGlow 0.5s infinite;
+}
+
+.play {
+    padding: 12px 22px;
+    border-top: 2px solid #5afc73;
+    border-left: 2px solid #5afc73;
+    border-bottom: 2px solid #005f0a;
+    border-right: 2px solid #005f0a;
+    background-color: #008f11;
+    color: #e0ffee;
+    cursor: pointer;
+    font-size: 14px;
+    text-shadow: 1px 1px #000;
+    transition: all 0.05s ease-out;
+}
+
+.secondary {
+    padding: 10px 14px;
+    border-top: 2px solid #7a73a3;
+    border-left: 2px solid #7a73a3;
+    border-bottom: 2px solid #1a152a;
+    border-right: 2px solid #1a152a;
+    background-color: #3d3552;
+    color: rgba(231,240,255,0.9);
+    cursor: pointer;
+    font-size: 12px; 
+    text-shadow: 1px 1px #000;
+}
+
+/* Effets au clic */
+.play:active, .secondary:active {
+    border-top: 2px solid #1a152a;
+    border-left: 2px solid #1a152a;
+    border-bottom: 2px solid #7a73a3;
+    border-right: 2px solid #7a73a3;
+    transform: translateY(1px);
+}

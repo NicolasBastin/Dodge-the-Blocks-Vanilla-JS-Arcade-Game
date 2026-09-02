@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+button, input, .card, .preview {
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	outline: none; 
+}
+
+button:focus-visible, input:focus-visible {
+	outline: 2px dotted #fff;
+	outline-offset: 2px;
+}
+
+html {
+    height: 100%;
+    background-image: url('../medias/img/background.png');
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: auto; 
+}
+
+body {
+    height: 100%;
+    font-family: 'Silkscreen', cursive;
+    background-color: transparent; 
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated; 
+}
+
+.container {
+	min-height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+}
+
+.card {
+    width: 100%;
+    max-width: 720px;
+    background: rgba(30, 25, 45, 0.9);
+    border-top: 4px solid #7a73a3;
+    border-left: 4px solid #7a73a3;
+    border-bottom: 4px solid #1a152a;
+    border-right: 4px solid #1a152a;
+
+    padding: 28px;
+    text-align: center;
+}
+
+#pseudo {
+	width: 200px;
+	max-width: 100%;
+	padding: 10px 12px;
+	border-radius: 6px;
+	border: 1px solid rgba(255,255,255,0.06);
+	background: rgba(0,0,0,0.25);
+	color: #fff;
+	font-size: 14px;
+}
+
+
+.title {
+	font-size: 32px;
+	letter-spacing: normal; 
+	margin-bottom: 16px;
+	color: rgba(231,240,255,0.8);
+}
+
+.subtitle {
+	font-size: 14px;
+	color: rgba(231,240,255,0.8);
+	margin-bottom: 30px;
+}
+
+/* Zone de prévisualisation du jeu */
+.preview {
+	width: 100%;
+	height: auto;
+	background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+	border-radius: 8px;
+	border: 1px dashed rgba(255,255,255,0.04);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: rgba(231,240,255,0.5);
+	margin-bottom: 18px;
+}
+
+/* Formulaire */
+form {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+	align-items: center;
+	margin-bottom: 14px;
+}
+
+label {
+	font-size: 13px;
+	text-align: left;
+	color: rgba(231,240,255,0.85);
+	margin-bottom: 6px;
+}
+
+.full-row { grid-column: 1 / -1; }
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    
+    /* BORDURES THÉMATIQUES */
+    border-top: 2px solid #1a152a;
+    border-left: 2px solid #1a152a;
+    border-bottom: 2px solid #7a73a3;
+    border-right: 2px solid #7a73a3;
+    
+    background-color: #1a152a; 
+    color: #e7f0ff;
+    font-size: 12px;
+    text-shadow: 1px 1px #000;
+    caret-color: #fff;
+}
+
+input[type="text"]::placeholder {
+  color: #707070; 
+}
+
+.modes {
+	display:flex;
+	gap:10px;
+	justify-content: center;
+	margin-top: 10px;
+}
+
+.mode-btn {
+	appearance: none;
+	padding: 10px 14px;
+	/* BORDURES BISEAUTÉES */
+	border-top: 2px solid #7a73a3;
+    border-left: 2px solid #7a73a3;
+    border-bottom: 2px solid #1a152a;
+    border-right: 2px solid #1a152a; 
+    background-color: #3d3552; 
+    color: #eaf4ff;
+	cursor: pointer;
+	font-weight: normal; 
+	font-size: 12px; 
+	text-shadow: 1px 1px #000; 
+	transition: all 0.05s ease-out; 
+}
+
+
+.mode-btn[aria-pressed="true"] {
+    /* Inverser les bordures */
+    border-top: 2px solid #1a152a;
+    border-left: 2px solid #1a152a;
+    border-bottom: 2px solid #7a73a3;
+    border-right: 2px solid #7a73a3;
+    background-color: #1a152a; 
+    color: #aaffee;
+}
+
+
+.mode-btn:not([aria-pressed="true"]):hover {
+    background-color: #4f476b; 
+}
+
+
+.mode-btn:active {
+    border-top: 2px solid #1a152a;
+    border-left: 2px solid #1a152a;
+    border-bottom: 2px solid #7a73a3;
+    border-right: 2px solid #7a73a3;
+    background-color: #1a152a;
+    transform: translateY(1px);
+}
+
+.actions {
+	display:flex;
+	gap:12px;
+	justify-content:center;
+	margin-top: 20px;
+}
+
+.play {
+	padding: 12px 22px;
+	font-weight: normal; 
+	/* COULEURS DE BORDURE POUR LE BOUTON PRINCIPAL */
+	border-top: 2px solid #5afc73; 
+	border-left: 2px solid #5afc73;
+	border-bottom: 2px solid #005f0a;
+	border-right: 2px solid #005f0a;
+	background-color: #008f11; 
+	color: #e0ffee;
+	cursor: pointer;
+	font-size: 14px;
+	text-shadow: 1px 1px #000;
+	transition: all 0.05s ease-out;
+}
+
+.play:hover {
+	background-color: #00b016;
+}
+
+.play:active {
+	border-top: 2px solid #005f0a;
+	border-left: 2px solid #005f0a;
+	border-bottom: 2px solid #5afc73;
+	border-right: 2px solid #5afc73;
+	background-color: #005f0a;
+	transform: translateY(1px);
+}
+
+.secondary {
+    padding: 10px 14px;
+    border-top: 2px solid #7a73a3;
+    border-left: 2px solid #7a73a3;
+    border-bottom: 2px solid #1a152a;
+    border-right: 2px solid #1a152a;
+    
+    background-color: #3d3552;
+    color: rgba(231,240,255,0.9);
+    
+    cursor: pointer;
+    font-size: 12px; 
+    text-shadow: 1px 1px #000;
+    transition: all 0.05s ease-out;
+}
+
+.secondary:hover {
+    background-color: #4f476b; 
+}
+
+.secondary:active {
+    border-top: 2px solid #1a152a;
+    border-left: 2px solid #1a152a;
+    border-bottom: 2px solid #7a73a3;
+    border-right: 2px solid #7a73a3;
+    background-color: #1a152a;
+    transform: translateY(1px);
+}
+
+
+
+.footer-note {
+	margin-top: 14px;
+	font-size: 12px;
+	color: rgba(231,240,255,0.6);
+}
+
+
+@media (max-width: 560px) {
+	form { grid-template-columns: 1fr; }
+	.preview { height: 200px; }
+}
+
+.hidden {
+	display: none;
+}
+button, 
+input, 
+label, 
+.subtitle, 
+.footer-note {
+font-family: inherit; 
+}
+
+
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+    backdrop-filter: blur(2px); 
+}
+
+/* La fenêtre settings */
+#settings {
+    background: #252d3a; 
+    border-top: 4px solid #7a73a3;    
+    border-left: 4px solid #7a73a3;
+    border-bottom: 4px solid #1a152a; 
+    border-right: 4px solid #1a152a;
+    
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    color: #fff; 
+    border-radius: 0; 
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+}
+
+#settings h2 {
+    font-size: 20px;
+    margin-bottom: 25px;
+    color: #aaffee;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#settings p {
+    margin-bottom: 20px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+#settings button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #3d3552;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: uppercase;
+    font-size: 12px;
+    
+    border-top: 2px solid #7a73a3;
+    border-left: 2px solid #7a73a3;
+    border-bottom: 2px solid #1a152a;
+    border-right: 2px solid #1a152a;
+    transition: all 0.05s;
+}
+
+#settings button:hover {
+    background-color: #4f476b;
+}
+
+#settings button:active {
+    /* Effet bouton enfoncé */
+    border-top: 2px solid #1a152a;
+    border-left: 2px solid #1a152a;
+    border-bottom: 2px solid #7a73a3;
+    border-right: 2px solid #7a73a3;
+    transform: translateY(2px);
+}
+
+/* C'est nécessaire pour retirer le look de base*/
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent; 
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  background: #1a152a;
+  border: 2px solid #7a73a3;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  height: 24px;
+  width: 12px;
+  background: #5afc73;
+  border: 2px solid #005f0a;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8px;
+}
+
+/* Pour Firefox (au cas où) */
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  background: #1a152a;
+  border: 2px solid #7a73a3;
+}
+
+input[type=range]::-moz-range-thumb {
+  height: 24px;
+  width: 12px;
+  border: 2px solid #005f0a;
+  background: #5afc73;
+  cursor: pointer;
+}
